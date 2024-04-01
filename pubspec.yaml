@@ -1,0 +1,42 @@
+name: randompassword
+description: A new Flutter project.
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  icons_plus: ^4.0.0
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.15.2
+  google_nav_bar: ^5.0.6
+  flutter_custom_clippers: ^2.1.0
+  keyboard_dismisser: ^3.0.0
+  cloud_firestore: ^4.13.6
+  get: ^4.6.6
+  intl: ^0.18.1
+  logger: ^2.0.1
+  flutter_native_splash: ^2.3.1
+  get_storage: ^2.1.1
+  iconsax: ^0.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
