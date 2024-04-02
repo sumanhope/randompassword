@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:randompassword/pages/landing.dart';
 import 'utils/theme/theme.dart';
 
 void main() {
@@ -16,11 +17,7 @@ class MainApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: MFAppTheme.lightTheme,
       darkTheme: MFAppTheme.darkTheme,
-      home: const Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      home: const Scaffold(body: LandingPage()),
     );
   }
 }
