@@ -15,24 +15,24 @@ class MFTextFormFieldTheme {
     errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
     floatingLabelStyle: const TextStyle().copyWith(color: MFColors.black.withOpacity(0.8)),
     border: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(MFSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 3, color: MFColors.primary),
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 2, color: MFColors.primary),
     ),
     enabledBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(MFSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 3, color: MFColors.primary),
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 2, color: MFColors.primary),
     ),
     focusedBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(MFSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 3, color: MFColors.primary),
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 2, color: MFColors.primary),
     ),
     errorBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(MFSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 3, color: MFColors.warning),
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 2, color: MFColors.warning),
     ),
     focusedErrorBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(MFSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 3, color: MFColors.warning),
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 2, color: MFColors.warning),
     ),
   );
 
@@ -45,24 +45,24 @@ class MFTextFormFieldTheme {
     hintStyle: const TextStyle().copyWith(fontSize: MFSizes.fontSizeSm, color: MFColors.white),
     floatingLabelStyle: const TextStyle().copyWith(color: MFColors.white.withOpacity(0.8)),
     border: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(MFSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 3, color: MFColors.darkGrey),
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 2, color: MFColors.darkGrey),
     ),
     enabledBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(MFSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 3, color: MFColors.darkGrey),
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 2, color: MFColors.darkGrey),
     ),
     focusedBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(MFSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 3, color: MFColors.white),
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 2, color: MFColors.white),
     ),
     errorBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(MFSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 3, color: MFColors.warning),
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 2, color: MFColors.warning),
     ),
     focusedErrorBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(MFSizes.inputFieldRadius),
-      borderSide: const BorderSide(width: 3, color: MFColors.warning),
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 2, color: MFColors.warning),
     ),
   );
 }
