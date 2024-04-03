@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:randompassword/pages/activitylog.dart';
-import 'package:randompassword/pages/savedpassword.dart';
+import 'package:randompassword/pages/passwordmanager.dart';
 import 'package:randompassword/utils/constants/colors.dart';
 import '../utils/helpers/helper_functions.dart';
 import 'home.dart';
@@ -17,7 +17,7 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   final List<Widget> pages = [
     const HomeScreen(),
-    const SavedPasswordScreen(),
+    const PasswordManagerScreen(),
     const ActivityLogScreen(),
   ];
 
