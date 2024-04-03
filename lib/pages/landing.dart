@@ -42,28 +42,32 @@ class _LandingPageState extends State<LandingPage> {
               backgroundColor: dark ? Colors.black : MFColors.primary,
               color: const Color.fromARGB(218, 224, 224, 224),
               activeColor: dark ? Colors.black : Colors.white,
-              tabBackgroundColor: dark ? const Color.fromRGBO(129, 199, 132, 1) : const Color.fromRGBO(66, 160, 71, 1),
+              tabBackgroundColor: dark ? const Color(0xFF191919) : const Color.fromRGBO(66, 160, 71, 1),
               gap: 4,
               padding: const EdgeInsets.all(10),
               iconSize: 25,
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                 fontSize: 15,
-                color: dark ? Colors.black : Colors.white,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
               tabs: [
                 GButton(
                   icon: currentStep == 0 ? Iconsax.home5 : Iconsax.home_1,
+                  iconActiveColor: Colors.white,
                   iconColor: Colors.white,
                   text: "Home",
                 ),
                 GButton(
                   icon: currentStep == 1 ? Iconsax.password_check5 : Iconsax.password_check,
                   text: "Password",
+                  iconActiveColor: Colors.white,
+                  iconColor: Colors.white,
                 ),
                 GButton(
                   icon: currentStep == 2 ? Iconsax.alarm5 : Iconsax.alarm,
                   text: "Activity Log",
+                  iconActiveColor: Colors.white,
                   iconColor: Colors.white,
                 ),
               ],
