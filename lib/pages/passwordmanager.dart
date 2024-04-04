@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:randompassword/controllers/storagefunc.dart';
 import 'package:randompassword/pages/addpassword.dart';
 import 'package:randompassword/pages/savedpass.dart';
 import 'package:randompassword/utils/constants/colors.dart';
@@ -11,14 +12,8 @@ class PasswordManagerScreen extends StatelessWidget {
   const PasswordManagerScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    List<Map<String, String>> passwordDataList = [
-      {"title": "Discord", "username": "pauroti"},
-      {"title": "Facebook", "username": "Suman"},
-      {"title": "Reddit", "username": "pauroti"},
-      {"title": "Gmail", "username": "sumansthahope@gmail.com"},
-      {"title": "Instagram", "username": "paurotiii"},
-      {"title": "Full Novel", "username": "pauroti"},
-    ];
+    final passwordStorage = PasswordStorage();
+    List<dynamic> passwordDataList = passwordStorage.readDataFromLocalStorage();
     final dark = MFHelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: AppBar(
@@ -67,15 +62,26 @@ class PasswordManagerScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
-            ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: passwordDataList.length,
-              itemBuilder: (context, index) {
-                final data = passwordDataList[index];
-                return PasswordTile(title: data["title"]!, subtitle: data["username"]!);
-              },
-            ),
+            passwordDataList.isEmpty
+                ? Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height * 0.3)),
+                      child: const Text("Click plus button to add password."),
+                    ),
+                  )
+                : ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: passwordDataList.length,
+                    itemBuilder: (context, index) {
+                      final data = passwordDataList[index];
+                      return PasswordTile(
+                        title: data["sitename"]!,
+                        subtitle: data["username"]!,
+                        id: data["id"]!,
+                      );
+                    },
+                  ),
           ],
         ),
       ),
@@ -88,9 +94,10 @@ class PasswordTile extends StatelessWidget {
     super.key,
     required this.title,
     required this.subtitle,
+    required this.id,
   });
 
-  final String title, subtitle;
+  final String title, subtitle, id;
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +122,9 @@ class PasswordTile extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         onTap: () {
-          Get.to(() => const SavedPassScreen());
+          Get.to(() => SavedPassScreen(
+                id: id,
+              ));
         },
       ),
     );

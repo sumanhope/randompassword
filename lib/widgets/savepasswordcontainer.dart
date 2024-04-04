@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:randompassword/controllers/storagefunc.dart';
+import 'package:randompassword/pages/editpassword.dart';
 import '../controllers/controller.dart';
 import '../utils/constants/colors.dart';
 import '../utils/helpers/helper_functions.dart';
@@ -11,16 +13,20 @@ class SavedPassContainer extends StatelessWidget {
   const SavedPassContainer({
     super.key,
     required this.title,
+    required this.emoji,
+    required this.id,
     required this.usernameController,
     required this.passwordController,
   });
-  final String title;
+  final String title, emoji, id;
   final TextEditingController usernameController;
   final TextEditingController passwordController;
   @override
   Widget build(BuildContext context) {
     final dark = MFHelperFunctions.isDarkMode(context);
     final eyeCont = Get.put(PasswordEyeController());
+    final passwordStorage = PasswordStorage();
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
       child: Container(
@@ -43,7 +49,7 @@ class SavedPassContainer extends StatelessWidget {
                   radius: 22,
                   backgroundColor: dark ? const Color.fromARGB(255, 40, 40, 40) : const Color.fromARGB(177, 131, 201, 134),
                   //child: const Icon(EvaIcons.email_outline),
-                  child: const Text("🤖"),
+                  child: Text(emoji),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -200,7 +206,15 @@ class SavedPassContainer extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => EditPasswordScreen(
+                            id: id,
+                            sitename: title,
+                            emoji: emoji,
+                            username: usernameController.text,
+                            password: passwordController.text,
+                          ));
+                    },
                     style: OutlinedButton.styleFrom(
                       backgroundColor: dark ? const Color(0xFF191919) : Colors.white,
                       shape: RoundedRectangleBorder(
@@ -222,7 +236,9 @@ class SavedPassContainer extends StatelessWidget {
                 ),
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      passwordStorage.deletePassword(id);
+                    },
                     style: OutlinedButton.styleFrom(
                       backgroundColor: dark ? const Color(0xFF191919) : Colors.white,
                       shape: RoundedRectangleBorder(
