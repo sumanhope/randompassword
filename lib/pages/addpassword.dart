@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/components/toast/gf_toast.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import 'package:randompassword/controllers/storagefunc.dart';
+import 'package:randompassword/pages/landing.dart';
 import '../utils/constants/colors.dart';
 import '../utils/helpers/helper_functions.dart';
 
@@ -10,17 +13,19 @@ class AddPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = MFHelperFunctions.isDarkMode(context);
-    final iconContoller = TextEditingController();
+    final iconController = TextEditingController();
     final sitenameController = TextEditingController();
     final usernameController = TextEditingController();
     final passwordController = TextEditingController();
+    final passwordStorage = PasswordStorage();
+
     return KeyboardDismisser(
       gestures: const [GestureType.onPanUpdateAnyDirection, GestureType.onTap],
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              Get.back();
+              Get.off(() => const LandingPage());
             },
             icon: const Icon(PixelArtIcons.arrow_left),
           ),
@@ -70,7 +75,7 @@ class AddPasswordScreen extends StatelessWidget {
                         ),
                       ),
                       CustomTextfield(
-                        controller: iconContoller,
+                        controller: iconController,
                         hint: "🤖",
                       ),
                       const SizedBox(
@@ -112,7 +117,31 @@ class AddPasswordScreen extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (sitenameController.text.trim().isNotEmpty &&
+                                iconController.text.trim().isNotEmpty &&
+                                usernameController.text.trim().isNotEmpty &&
+                                passwordController.text.trim().isNotEmpty) {
+                              passwordStorage.savePassword(
+                                sitenameController.text.trim(),
+                                iconController.text.trim(),
+                                usernameController.text.trim(),
+                                passwordController.text.trim(),
+                              );
+                              sitenameController.clear();
+                              iconController.clear();
+                              usernameController.clear();
+                              passwordController.clear();
+                            } else {
+                              GFToast.showToast(
+                                "Please fill all fields",
+                                context,
+                                textStyle: Theme.of(context).textTheme.bodyMedium,
+                                toastBorderRadius: 5.0,
+                                backgroundColor: dark ? Colors.black : MFColors.accent,
+                              );
+                            }
+                          },
                           style: OutlinedButton.styleFrom(
                             backgroundColor: dark ? const Color(0xFF191919) : const Color(0xFFFAFAFA),
                             shape: RoundedRectangleBorder(
