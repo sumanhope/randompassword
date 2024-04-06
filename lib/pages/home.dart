@@ -35,13 +35,10 @@ class HomeScreen extends StatelessWidget {
             icon: themeCont.dark.value ? const Icon(Iconsax.moon) : const Icon(Iconsax.sun_1),
           ),
         ),
-        title: const Text("Home"),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Iconsax.logout_1),
-          ),
-        ],
+        title: Text(
+          "Home",
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
       ),
       body: SingleChildScrollView(
         child: Center(

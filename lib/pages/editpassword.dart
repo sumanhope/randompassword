@@ -29,7 +29,10 @@ class EditPasswordScreen extends StatelessWidget {
       gestures: const [GestureType.onTap, GestureType.onPanUpdateAnyDirection],
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Edit Password"),
+          title: Text(
+            "Edit Password",
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
         ),
         body: SingleChildScrollView(
           child: Column(
