@@ -7,8 +7,8 @@ class PasswordStorage {
   void savePassword(dynamic sitename, dynamic emoji, dynamic username, dynamic password) {
     final storage = GetStorage();
     List<Map<String, dynamic>> emptyList = [];
-    List<Map<String, dynamic>> passwords = storage.read<List<Map<String, dynamic>>>("passwords") ?? emptyList;
-
+    List<dynamic> data = storage.read('passwords') ?? emptyList;
+    List<Map<String, dynamic>> passwords = data.map((item) => item as Map<String, dynamic>).toList();
     // Generate a unique ID
     var uuid = const Uuid();
     String id = uuid.v1();
@@ -53,7 +53,7 @@ class PasswordStorage {
     // Save the updated list back to local storage
     storage.write('passwords', passwords);
 
-    Get.off(
+    Get.offAll(
       () => const LandingPage(),
     );
 
