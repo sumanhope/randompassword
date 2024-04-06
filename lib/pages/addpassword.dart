@@ -25,7 +25,7 @@ class AddPasswordScreen extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              Get.off(() => const LandingPage());
+              Get.offAll(() => const LandingPage());
             },
             icon: const Icon(PixelArtIcons.arrow_left),
           ),
