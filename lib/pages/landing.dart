@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:randompassword/pages/activitylog.dart';
@@ -28,7 +30,94 @@ class _LandingPageState extends State<LandingPage> {
     final dark = MFHelperFunctions.isDarkMode(context);
     return WillPopScope(
       onWillPop: () async {
-        return false;
+        final shouldPop = await showDialog(
+          context: context,
+          builder: (_) {
+            return AlertDialog(
+              backgroundColor: dark ? const Color(0xFF191919) : Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
+                side: BorderSide(
+                  width: 2,
+                  color: dark ? MFColors.darkGrey : MFColors.primary,
+                ),
+              ),
+              title: const Text("Exit Random Password"),
+              content: const Text("Do you want to exit this application?"),
+              actions: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: dark ? const Color(0xFF191919) : Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          side: BorderSide(
+                            width: 2,
+                            color: dark ? MFColors.darkGrey : MFColors.primary,
+                          ),
+                        ),
+                        child: const Text("No"),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () {
+                          SystemNavigator.pop();
+                        },
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: dark ? const Color(0xFF191919) : Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          side: BorderSide(
+                            width: 2,
+                            color: dark ? MFColors.darkGrey : MFColors.primary,
+                          ),
+                        ),
+                        child: const Text("Yes"),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          },
+        );
+        // final shouldPop = await showDialog<bool>(
+        //   context: context,
+        //   builder: (context) {
+        //     return AlertDialog(
+        //       title: const Text('Do you want to exit the application?'),
+        //       actionsAlignment: MainAxisAlignment.spaceBetween,
+        //       actions: [
+        //         TextButton(
+        //           onPressed: () {
+        //             SystemNavigator.pop();
+        //           },
+        //           child: const Text('Yes'),
+        //         ),
+        //         TextButton(
+        //           onPressed: () {
+        //             Navigator.pop(context, false);
+        //           },
+        //           child: const Text('No'),
+        //         ),
+        //       ],
+        //     );
+        //   },
+        // );
+        return shouldPop!;
       },
       child: Scaffold(
         body: pages[currentStep],

@@ -237,7 +237,70 @@ class SavedPassContainer extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {
-                      passwordStorage.deletePassword(id);
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            backgroundColor: dark ? const Color(0xFF191919) : Colors.white,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              side: BorderSide(
+                                width: 2,
+                                color: dark ? MFColors.darkGrey : MFColors.primary,
+                              ),
+                            ),
+                            title: const Text("Delete Password"),
+                            content: const Text("Do you want to delete this password?"),
+                            actions: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      style: OutlinedButton.styleFrom(
+                                        backgroundColor: dark ? const Color(0xFF191919) : Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5),
+                                        ),
+                                        side: BorderSide(
+                                          width: 2,
+                                          color: dark ? MFColors.darkGrey : MFColors.primary,
+                                        ),
+                                      ),
+                                      child: const Text("Cancel"),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  Expanded(
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        passwordStorage.deletePassword(id);
+                                      },
+                                      style: OutlinedButton.styleFrom(
+                                        backgroundColor: dark ? const Color(0xFF191919) : Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5),
+                                        ),
+                                        side: BorderSide(
+                                          width: 2,
+                                          color: dark ? MFColors.darkGrey : MFColors.primary,
+                                        ),
+                                      ),
+                                      child: const Text("Delete"),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     },
                     style: OutlinedButton.styleFrom(
                       backgroundColor: dark ? const Color(0xFF191919) : Colors.white,
