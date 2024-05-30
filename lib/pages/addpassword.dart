@@ -128,10 +128,10 @@ class AddPasswordScreen extends StatelessWidget {
                                 usernameController.text.trim(),
                                 passwordController.text.trim(),
                               );
-                              sitenameController.clear();
-                              iconController.clear();
-                              usernameController.clear();
-                              passwordController.clear();
+                              // sitenameController.clear();
+                              // iconController.clear();
+                              // usernameController.clear();
+                              // passwordController.clear();
                             } else {
                               GFToast.showToast(
                                 "Please fill all fields",
